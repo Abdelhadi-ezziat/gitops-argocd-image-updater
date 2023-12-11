@@ -5,7 +5,7 @@ pipeline {
 
     environment {
         APP_NAME = "complete-prodcution-e2e-pipeline"
-        github-token = credentials("github-token")
+        GITHUB-TOKEN = credentials("github-token")
     }
 
     stages {
