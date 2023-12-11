@@ -38,11 +38,11 @@ pipeline {
                     git config --global user.email "abdelhadi.ezziat@gmail.com"
                     git add deployment.yaml
                     git commit -m "Updated deployment manifest"
-                    git push https://abdelhadi-ezziat:${github-token}@github.com/Abdelhadi-ezziat/gitops-argocd-image-updater main
                 """
-                // withCredentials{[gitUsernamePassword(credentialsId: 'github-token', gitToolName: 'Default')]} {
-                //     sh "git push https://github.com/Abdelhadi-ezziat/gitops-argocd-image-updater main"
-                // }
+                // git push https://abdelhadi-ezziat:${github-token}@github.com/Abdelhadi-ezziat/gitops-argocd-image-updater main
+                withCredentials{[gitUsernamePassword(credentialsId: 'github-token', gitToolName: 'Default')]} {
+                    sh "git push https://github.com/Abdelhadi-ezziat/gitops-argocd-image-updater main"
+                }
             }
         }
     }
