@@ -53,11 +53,12 @@ pipeline {
                     git config --global user.email "ezziat.abdelhadi@gmail.com"
                     git add deployment.yaml
                     git commit -m "Updated deployment manifest"
+                    git -c http.sslVerify=false push https://Abdelhadi-ezziat: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@github.com/Abdelhadi-ezziat/gitops-argocd-image-updater.git main
                 """
                 // git push https://abdelhadi-ezziat:${github-token}@github.com/Abdelhadi-ezziat/gitops-argocd-image-updater main
-                withCredentials{[gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]} {
-                    sh "git push https://github.com/Abdelhadi-ezziat/gitops-argocd-image-updater.git main"
-                }
+                // withCredentials{[gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]} {
+                //     sh "git push https://github.com/Abdelhadi-ezziat/gitops-argocd-image-updater.git main"
+                // }
 
             }
         }
