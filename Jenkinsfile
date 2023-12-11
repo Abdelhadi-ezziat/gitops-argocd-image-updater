@@ -32,15 +32,25 @@ pipeline {
 
         stage("Push changes to repo") {
             steps {
-                sh """
-                    git config --global user.name "abdelhadi-ezziat"
-                    git config --global user.email "abdelhadi.ezziat@gmail.com"
-                    git add deployment.yaml
-                    git commit -m "Updated deployment manifest"
-                """
-                withCredentials{[gitUsernamePassword(credentialsId: 'github-token', gitToolName: 'Default')]} {
-                    sh "git push https://github.com/Abdelhadi-ezziat/gitops-argocd-image-updater main"
+                withCredentials([string(credentialsId: 'github-token', variable: 'GIT_PASSWORD')]) {
+                    sh """
+                        git config --global user.name "abdelhadi-ezziat"
+                        git config --global user.email "abdelhadi.ezziat@gmail.com"
+                        git add deployment.yaml
+                        git commit -m "Updated deployment manifest"
+                        git push https://github.com/Abdelhadi-ezziat/gitops-argocd-image-updater main
+                    """
                 }
+                // sh """
+                //     git config --global user.name "abdelhadi-ezziat"
+                //     git config --global user.email "abdelhadi.ezziat@gmail.com"
+                //     git add deployment.yaml
+                //     git commit -m "Updated deployment manifest"
+                //     git push https://abdelhadi-ezziat:${github-token}@github.com/Abdelhadi-ezziat/gitops-argocd-image-updater main
+                // """
+                // withCredentials{[gitUsernamePassword(credentialsId: 'github-token', gitToolName: 'Default')]} {
+                //     sh "git push https://github.com/Abdelhadi-ezziat/gitops-argocd-image-updater main"
+                // }
             }
         }
     }
