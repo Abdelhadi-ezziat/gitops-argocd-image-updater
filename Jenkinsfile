@@ -56,7 +56,7 @@ pipeline {
                 """
                 // git push https://abdelhadi-ezziat:${github-token}@github.com/Abdelhadi-ezziat/gitops-argocd-image-updater main
                 withCredentials{[gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]} {
-                    sh "git push https://github.com/Abdelhadi-ezziat/gitops-argocd-image-updater main"
+                    sh "git push https://github.com/Abdelhadi-ezziat/gitops-argocd-image-updater.git main"
                 }
 
             }
