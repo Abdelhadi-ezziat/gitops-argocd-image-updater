@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: complete-prodcution-e2e-deployment
+  name: complete-devops-deployment
 spec:
   selector:
     matchLabels:
-      app: complete-prodcution-e2e-app
+      app: complete-devops-app
   template:
     metadata:
       labels:
-        app: complete-prodcution-e2e-app
+        app: complete-devops-app
     spec:
       containers:
-        - name: complete-prodcution-e2e-app
-          image: aecloud/complete-prodcution-e2e-pipeline:1.0.0-21
+        - name: complete-devops-app
+          image: aecloud/complete-devops-pipeline:1.0.0-21
           resources:
             limits:
               memory: "256Mi"
